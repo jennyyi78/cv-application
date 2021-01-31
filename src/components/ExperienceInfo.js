@@ -17,7 +17,7 @@ const ExperienceInfo = (props) => {
             <p className="date-title">
               {experienceInfo.workDateFrom}
               {' '}
-              to
+              &mdash;
               {' '}
               {experienceInfo.workDateTo}
               {' '}

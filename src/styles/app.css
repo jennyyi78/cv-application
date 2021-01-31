@@ -1,16 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
 
 body {
-    background-color: #6BBAEC;
+    background-color: #346da0;
+    margin: 0;
 }
 
 .main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-header {
+    font-size: 45px;
+    color: black;
+    background-color: #fdf2f2;
+    width: 100%;
+    height: 70px;
+    padding-top: 20px;
+    line-height: 50px;
+    text-indent: 50px;
+    box-shadow: 2px 2px 8px rgb(70, 66, 66);
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+}
+
+.sub-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    font-family: 'Open Sans', sans-serif;
     gap: 5%;
-    margin: 30px;
+    margin: 40px;
 }
 
 .cv-form-container {
@@ -18,27 +38,35 @@ body {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    font-weight: 600;
 }
 
-
-.form-header {
-    font-size: 35px;
-
-}
 
 .form-section-title {
-    font-size: 25px;
+    font-size: 23px;
     border-bottom: solid;
     border-width: 1px;
-    margin-bottom: -30px;
     margin-top: 30px;
+    color: black;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
 }
 
 input {
-    width: 100%;
+    width: 90%;
     height: 25px;
-    margin-left: 10px;
-    clear: both;
+    clear: left;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 3px;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fdf2f2;
+}
+
+input:focus {
+    outline: none;
 }
 
 label:before {
@@ -49,6 +77,11 @@ label:before {
 label {
     line-height: 1;
     margin-bottom: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    clear: left;
+    width: 100%;
+    
 }
 
 button {
@@ -57,6 +90,21 @@ button {
     margin-right: auto;
     margin-top: 10px;
     margin-bottom: 10px;
+    
+}
+
+button:focus {
+    outline: none;
+}
+
+.delete-entry {
+    position: relative;
+    bottom: 2px;
+    border-radius: 50%;
+    width: 30px;
+    font-size: 10px;
+    font-weight: 600;
+    height: 30px;
 }
 
 .add-task {
@@ -68,7 +116,10 @@ button {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: white;
+    background-color:#fdf2f2;
+    box-shadow: 5px 7px 19px 3px rgba(0,0,0,0.74);
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
 }
 .general-info {
     display: flex;
@@ -78,7 +129,7 @@ button {
 }
 
 .name-header {
-    font-size: 50px;
+    font-size: 45px;
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 
@@ -120,13 +171,21 @@ p {
 
 @media print {
     .cv-form-container{
-      display:none;
+      display: none;
+    }
+
+    .form-header{
+        display: none;
     }
     .print-button {
         display: none;
     }
-    .main-container {
+    .sub-container {
         display: block;
+    }
+
+    .resume-container {
+        box-shadow: none;
     }
     @page { margin: 0; }
   }

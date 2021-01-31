@@ -17,7 +17,8 @@ const EducationInfo = (props) => {
             <p className="date-title">
               {educationInfo.schoolDateFrom}
               {' '}
-              to
+              &mdash;
+
               {' '}
               {educationInfo.schoolDateTo}
               {' '}

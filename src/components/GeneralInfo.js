@@ -2,7 +2,6 @@ import React from 'react';
 
 const GeneralInfo = (props) => {
   const { generalInfo } = props;
-
   return (
     <div className="general-info">
       <div className="name-header">
