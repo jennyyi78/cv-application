@@ -1,5 +1,4 @@
 import React from 'react';
-import uniqid from 'uniqid';
 
 const ExperienceInfo = (props) => {
   const { totalExperience } = props;
@@ -10,13 +9,27 @@ const ExperienceInfo = (props) => {
     <div className="experience-info">
       <div className="section-title">Experience</div>
       {totalExperience.map((experienceInfo) => (
-        <div key={uniqid()} className="experience-container">
-          <div className="title-header">
-            <p className="main-title">
+        <div key={experienceInfo.index} className="experience-container">
+          <div className="entry-title-container">
+            <p className="title-text">
               {experienceInfo.companyName}
             </p>
-            <p className="date-title">date</p>
+            <p className="date-title">
+              {experienceInfo.workDateFrom}
+              {' '}
+              to
+              {' '}
+              {experienceInfo.workDateTo}
+              {' '}
+
+            </p>
           </div>
+          <p>
+            {experienceInfo.positionTitle}
+          </p>
+          <ul>
+            {experienceInfo.tasks.map((task) => <li key={task.index}>{task.taskText}</li>)}
+          </ul>
         </div>
       ))}
 

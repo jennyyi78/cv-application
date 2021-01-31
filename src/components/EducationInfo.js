@@ -1,5 +1,4 @@
 import React from 'react';
-import uniqid from 'uniqid';
 
 const EducationInfo = (props) => {
   const { totalEducation } = props;
@@ -9,14 +8,34 @@ const EducationInfo = (props) => {
   return (
     <div className="education-info">
       <div className="section-title">Education</div>
-      {totalEducation.map((education) => (
-        <div key={uniqid()} className="education-container">
-          <div className="title-header">
-            <p className="main-title">
-              {education.schoolName}
+      {totalEducation.map((educationInfo) => (
+        <div key={educationInfo.index} className="education-container">
+          <div className="entry-title-container">
+            <p className="title-text">
+              {educationInfo.schoolName}
             </p>
-            <p className="date-title">date</p>
+            <p className="date-title">
+              {educationInfo.schoolDateFrom}
+              {' '}
+              to
+              {' '}
+              {educationInfo.schoolDateTo}
+              {' '}
+            </p>
           </div>
+          <p>
+            {educationInfo.schoolDegree}
+          </p>
+          <p>
+            Major:
+            {' '}
+            {educationInfo.schoolMajor}
+          </p>
+          <p>
+            GPA:
+            {' '}
+            {educationInfo.GPA}
+          </p>
         </div>
       ))}
 
