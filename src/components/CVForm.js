@@ -35,7 +35,7 @@ class Form extends Component {
         positionTitle: '',
         workDateFrom: '',
         workDateTo: '',
-        mainTasks: [],
+        tasks: [{ index: uniqid(), taskText: '' }],
       }],
 
     };
@@ -59,6 +59,16 @@ class Form extends Component {
       case 'experience-info-input': {
         const experience = totalExperience.find((experienceInfo) => experienceInfo.index === index);
         experience[event.target.id] = event.target.value;
+        this.setState({ totalExperience });
+        break;
+      }
+      case 'tasks-info-input': {
+        const experience = totalExperience.find((experienceInfo) => experienceInfo.index === index);
+
+        const taskIndex = event.target.getAttribute('data-task-index');
+        const task = experience.tasks.find((taskInfo) => taskInfo.index === taskIndex);
+        task.taskText = event.target.value;
+
         this.setState({ totalExperience });
         break;
       }
@@ -101,12 +111,30 @@ class Form extends Component {
           positionTitle: '',
           workDateFrom: '',
           workDateTo: '',
-          mainTasks: [],
+          tasks: [{ index: uniqid(), taskText: '' }],
 
         };
 
         this.setState({
           totalExperience: totalExperience.concat(newForm),
+        });
+        break;
+      }
+
+      case 'add-task': {
+        const newTask = {
+
+          index: id,
+          task: '',
+
+        };
+
+        const experience = totalExperience.find(
+          (experienceInfo) => experienceInfo.index === event.target.getAttribute('data-index'),
+        );
+        experience.tasks = experience.tasks.concat(newTask);
+        this.setState({
+          totalExperience,
         });
         break;
       }
@@ -132,6 +160,16 @@ class Form extends Component {
         });
         break;
       }
+      case 'delete-tasks-info': {
+        const experience = totalExperience.find(
+          (experienceInfo) => experienceInfo.index === event.target.getAttribute('data-index'),
+        );
+        experience.tasks = experience.tasks.filter((task) => task.index !== event.target.getAttribute('data-task-index'));
+        this.setState({
+          totalExperience,
+        });
+        break;
+      }
       default:
         break;
     }
@@ -151,6 +189,7 @@ class Form extends Component {
     const {
       generalInfo, totalEducation, totalExperience,
     } = this.state;
+
     return (
       <div className="main-container">
         <div className="cv-form-container">
@@ -303,6 +342,64 @@ class Form extends Component {
                 />
               </label>
 
+              <label htmlFor="positionTitle">
+                Position Title
+                <input
+                  onBlur={this.handleChange}
+                  defaultValue={experienceInfo.positionTitle}
+                  type="text"
+                  id="positionTitle"
+                  className="experience-info-input"
+                  data-index={experienceInfo.index}
+                  onKeyDown={this.enterToSubmit}
+                />
+              </label>
+
+              <label htmlFor="workDateFrom">
+                Start Date
+                <input
+                  onBlur={this.handleChange}
+                  defaultValue={experienceInfo.workDateFrom}
+                  type="date"
+                  id="workDateFrom"
+                  className="experience-info-input"
+                  data-index={experienceInfo.index}
+                  onKeyDown={this.enterToSubmit}
+                />
+              </label>
+
+              <label htmlFor="workDateTo">
+                End Date
+                <input
+                  onBlur={this.handleChange}
+                  defaultValue={experienceInfo.workDateTo}
+                  type="date"
+                  id="workDateTo"
+                  className="experience-info-input"
+                  data-index={experienceInfo.index}
+                  onKeyDown={this.enterToSubmit}
+                />
+              </label>
+              <label htmlFor="tasks">
+                Tasks
+                {experienceInfo.tasks.map((task) => (
+                  <div key={task.index}>
+                    <input
+                      onBlur={this.handleChange}
+                      defaultValue={task.taskText}
+                      type="text"
+                      id="tasks"
+                      className="tasks-info-input"
+                      data-index={experienceInfo.index}
+                      data-task-index={task.index}
+                      onKeyDown={this.enterToSubmit}
+                    />
+                    <button type="button" id="tasks" data-index={experienceInfo.index} data-task-index={task.index} className="delete-tasks-info" onClick={this.deleteForm}>Delete Task</button>
+                  </div>
+
+                ))}
+              </label>
+              <button type="button" data-index={experienceInfo.index} className="add-task" onClick={this.createAdditionalForm}>Add New Task</button>
               <button type="button" data-index={experienceInfo.index} className="delete-experience-info" onClick={this.deleteForm}>Delete</button>
             </form>
           ))}
