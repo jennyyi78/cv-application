@@ -1,16 +1,20 @@
 import React from 'react';
 
 const GeneralInfo = (props) => {
-  const { totalGenInfo } = props;
-  if (totalGenInfo.length === 0) {
-    return (<div />);
-  }
+  const { generalInfo } = props;
+
   return (
     <div className="general-info">
       <div className="name-header">
-        {totalGenInfo[0].firstName}
+        {generalInfo.firstName}
         {' '}
-        {totalGenInfo[0].lastName}
+        {generalInfo.lastName}
+      </div>
+
+      <div className="info-header">
+        {generalInfo.email}
+        {' \u2022 '}
+        {generalInfo.phoneNumber}
       </div>
     </div>
   );

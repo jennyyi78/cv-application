@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
+
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 .resume-container {
     display: flex;
     flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
 }
 .general-info {
     display: flex;
@@ -17,12 +23,19 @@
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 
+.info.header {
+    font-size: 70px;
+}
+
 @media print {
     .cv-form-container{
       display:none;
     }
     .print-button {
         display: none;
+    }
+    .main-container {
+        display: block;
     }
     @page { margin: 0; }
   }
