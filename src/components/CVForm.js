@@ -504,7 +504,7 @@ class Form extends Component {
             <EducationInfo totalEducation={totalEducation} />
             <SkillsInfo totalSkills={totalSkills} />
             <ExperienceInfo totalExperience={totalExperience} />
-            <div><button type="button" className="print-button" onClick={this.printResume}>Print</button></div>
+            <div><button type="button" className="print-button" onClick={this.printResume}>Print Resume</button></div>
 
           </div>
 
